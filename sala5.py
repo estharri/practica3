@@ -10,7 +10,7 @@ EJE = 850#pos x del eje donde se mueven las naves
 X=0
 Y=1
 
-TMAX = 60
+TMAX = 65
 
 PASO = 25 #la cantidad q se desplaza una nave arriba o abajo
 
