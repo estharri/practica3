@@ -180,7 +180,7 @@ class Display():
         self.screen.blit(self.background, (0, 0))
         score = self.game.get_score()
         n_naves = len(self.game.naves)
-        font = pygame.font.Font(None, 20)
+        font = pygame.font.Font(None, 30)
         for i in range(n_naves):
         	text = font.render(f"Player {i+1}: {score[i]}", 1, WHITE)
         	self.screen.blit(text, (SIZE[X]-150, i*35))
