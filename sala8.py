@@ -7,7 +7,7 @@ import time
 
 SIZE = (1280, 720)
 EJE = 850#pos x del eje donde se mueven las naves
-X=0
+X = 0
 Y=1
 
 TMAX = 50
@@ -182,9 +182,9 @@ def main(ip_address,port):
     manager = Manager()
     print('¿Cuantos jugadores hay?')
     n_naves = int(input())
-    n_proyectiles = 5
+    n_proyectiles = 12
     try:
-        with Listener((ip_address, 6000),
+        with Listener((ip_address, port),
                       authkey=b'secret password') as listener:
             n_player = 0
             players = [None]*n_naves
@@ -206,6 +206,6 @@ if __name__=='__main__':
     ip_address = "127.0.0.1"
     if len(sys.argv)>2:
         ip_address = sys.argv[1]
-        port=sys.argv[2]
+        port= int(sys.argv[2])
 
     main(ip_address,port)

@@ -4,7 +4,7 @@ import pygame
 import sys, os
 import time
 
-TMAX = 50 # tiempo maximo del juego
+TMAX = 120 # tiempo maximo del juego
 WHITE = (255, 255, 255)
 BLACK = (0,0,0)
 
@@ -200,9 +200,9 @@ class Display():
 def main(ip_address,port):
     print('¿Cuantos jugadores hay?')
     n_naves = int(input())
-    n_proyectiles = 5
+    n_proyectiles = 12
     try:
-        with Client((ip_address, 6000), authkey=b'secret password') as conn:
+        with Client((ip_address, port), authkey=b'secret password') as conn:
             game = Game(n_naves, n_proyectiles)
             i,gameinfo = conn.recv()
             print(f"I am player {i+1}")
@@ -220,25 +220,26 @@ def main(ip_address,port):
                 game.update(gameinfo)
                 display.refresh()
                 display.tick()
+            score =list(game.get_score())
+            ganador = 0
+            for i in range(int(n_naves)):
+                if (score[i] < score[ganador]):
+                    ganador=i
+            ganador+=1
+            print("\n      /\    \n     /  \   \n    /    \  \n    |    |  \n    |    |  \n    |O  O|  \n    |    |  \n    |    |  \n   /|    |\ \n  / |____| \ \n /__|    |__\ ")
+            print('########################')
+            print('GANADOR: Player ', ganador)
+            print('########################')
     except:
         traceback.print_exc()
     finally:
         pygame.quit()
-        score =list(game.get_score())
-        ganador = 0
-        for i in range(int(n_naves)):
-            if (score[i] < score[ganador]):
-                ganador=i
-        ganador+=1
-        print("\n      /\    \n     /  \   \n    /    \  \n    |    |  \n    |    |  \n    |O  O|  \n    |    |  \n    |    |  \n   /|    |\ \n  / |____| \ \n /__|    |__\ ")
-        print('########################')
-        print('GANADOR: Player ', ganador)
-        print('########################')
+        
 
 if __name__=='__main__':
     ip_address = "127.0.0.1"
     if len(sys.argv)>2:
         ip_address = sys.argv[1]
-        port=sys.argv[2]
+        port = int(sys.argv[2])
 
-    main(ip_address,port)  
+    main(ip_address,port) 
