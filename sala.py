@@ -43,7 +43,7 @@ class Proyectil():
     
     def __init__(self):
         self.pos=[0, random.randint(0, SIZE[Y])] # los proyctiles salen desde la izquierda de la pantalla en posiciones aleatorias
-        self.velocity = random.randint(5,10) # es una cantidad que se sumará en horizontal, no un vector
+        self.velocity = random.randint(8,15) # es una cantidad que se sumará en horizontal, no un vector
     
     def get_pos(self):
         return self.pos         
