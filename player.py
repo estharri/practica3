@@ -202,7 +202,7 @@ def main(ip_address,port):
     print('###################################')
     print('Please, introduce the number of players:')
     n_naves = int(input())
-    n_proyectiles = 12
+    n_proyectiles = 18
     try:
         with Client((ip_address, port), authkey=b'secret password') as conn:
             game = Game(n_naves, n_proyectiles)
